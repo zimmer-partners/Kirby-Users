@@ -32,29 +32,43 @@
                 <label for="from"><?= $page->contact_from()->html() ?></label>
               </td>
               <td>
-                <input type="email" id="from" name="from" value="<?= $page->user()->email()->escape('attr') ?>" required="required">
+                <input type="email" id="from" name="from" value="<?= $site->user()->email() ?>" required="required">
               </td>
             </tr>
             <?php if ($page->contact_fields()->isNotEmpty()): ?>
               <?php foreach ($page->contact_fields()->toStructure() as $key => $contact_field): ?>
+                <?php 
+                  if ($contact_field->prefill()->isNotEmpty()) {
+                    $prefill_field_name = $contact_field->prefill()->value;
+                    if ($prefill_value = $site->user()->$prefill_field_name()) {
+                      $value_attr =  " value=\"{$prefill_value}\"";
+                    } else {
+                      $value_attr = '';
+                    }
+                  } else {
+                    $value_attr = '';
+                  }
+                ?>
+                <?php $required_attr = ($contact_field->required()->bool()) ? ' required="required"' : '' ?>
+                <?php $disabled_attr = ($contact_field->disabled()->bool()) ? ' disabled="disabled"' : '' ?>
                 <tr>
                   <td>
                     <label for="<?= $contact_field->label()->slug() ?>"><?= $contact_field->label()->html() ?></label>
                   </td>
                   <td>
-                    <input type="text" name="<?= $contact_field->label()->slug() ?>" id="<?= $contact_field->label()->slug() ?><?= ($contact_field->required()->bool()) ? ' required="required"' : '' ?>">
+                    <input type="text" name="<?= $contact_field->label()->slug() ?>" id="<?= $contact_field->label()->slug() ?>"<?= $value_attr ?><?= $required_attr ?><?= $disabled_attr ?>>
                   </td>
                 </tr>
               <?php endforeach ?>
             <?php endif ?>
             <tr>
               <td colspan="2">
-                <input type="text" name="subject" id="subject" placeholder="<?= $page->contact_subject()->escape('attr') ?>" required="required">
+                <input type="text" name="subject" id="subject" placeholder="<?= $page->contact_subject()->escape('html') ?>" required="required">
               </td>
             </tr>
             <tr>
               <td colspan="2">
-                <textarea name="body" id="body" placeholder="<?= $page->contact_body_placeholder()->escape('attr') ?>"></textarea>
+                <textarea name="body" id="body" placeholder="<?= $page->contact_body_placeholder()->escape('html') ?>"></textarea>
               </td>
             </tr>
             <tr>

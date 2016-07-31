@@ -45,6 +45,14 @@ fields:
       label:
         label: Label
         type: text
+      prefill:
+        label: Prefill
+        type: text
+        help: >
+          Enter the key of a user field to use as default.
       required:
         type: checkbox
         text: Required
+      disabled:
+        type: checkbox
+        text: Disabled
