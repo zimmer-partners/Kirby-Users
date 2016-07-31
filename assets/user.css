@@ -1,0 +1,53 @@
+/* @override 
+	http://derladen.local/assets/plugins/users/user.css */
+
+.form table {
+  width: 100%;
+  margin-top: 0.5em;
+}
+
+.form td {
+  padding-bottom: 0.5ex;
+}
+
+.form td label {
+  padding-right: 2em;
+}
+
+.form td input, .form td textarea {
+  width: 100%;
+}
+
+.form td textarea {
+  height: 12em;
+}
+
+.form td input[type=submit] {
+  width: inherit;
+  margin: 0.5em 0 0.5em 0;
+}
+
+.form__field-label {
+  width: 0;
+}
+
+.form__field-input {
+  width: 100%;
+}
+
+.user__logout {
+  margin: 0.5em 0 0.5em 0;
+}
+
+.user-functions h2 {
+  margin-top: 2ex;
+}
+.user-functions ul {
+  list-style-position: inside;
+  margin-top: 2ex;
+  margin-right: 0.5ex;
+}
+
+.user-functions li {
+  
+}
