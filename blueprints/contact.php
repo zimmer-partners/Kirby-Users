@@ -65,3 +65,33 @@ fields:
       Attention: Providing any other file extension 
       than <code>.php</code> might expose data to 
       anyone knowing the url of the data file.
+  contact_message_headline:
+    label: Form Messages
+    type: headline
+  contact_message_fillout:
+    label: Introduction
+    type: textarea
+    required: true
+    default: >
+      Please fill out the form below.
+  contact_message_success:
+    label: Success
+    type: textarea
+    required: true
+    default: >
+      Your submission was accepted. 
+      Thank you.
+  contact_message_failed:
+    label: Failed
+    type: textarea
+    required: true
+    default: >
+      Your submission was somehow screwed. 
+      Please try again or contact the administrator.
+  contact_message_no_file:
+    label: No Data File
+    type: textarea
+    required: true
+    default: >
+      No data file provided. Your submission was lost.
+      Please contact the administrator.

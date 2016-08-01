@@ -7,12 +7,12 @@
     <div class="text">
       <h1><?= $page->title()->html() ?></h1>
       
-      <?php if($page->error()): ?>
-      <div class="alert"><?= $page->error()->kirbytext()->or($page->error()) ?></div>
+      <?php if($page->error()->isNotEmpty()): ?>
+      <div class="alert"><?= $page->error()->kirbytext() ?></div>
       <?php endif ?>
       
-      <?php if($page->message()): ?>
-      <div class="message"><?= $page->message()->kirbytext()->or($page->error()) ?></div>
+      <?php if($page->message()->isNotEmpty()): ?>
+      <div class="message"><?= $page->message()->kirbytext() ?></div>
       <?php endif ?>
       
     </div>
@@ -74,6 +74,13 @@
             <tr>
               <td colspan="2" align="right">
                 <input type="hidden" id="to" name="to" value="<?= $page->contact_to()->escape('attr') ?>">
+                <?php if ($user = $page->site->user()): ?>
+                  <?php foreach ($user->data() as $key => $value): ?>
+                    <?php if ($key != 'password' && is_string($value)): ?>
+                      <input type="hidden" id="user_<?= $key ?>" name="user_<?= $key ?>" value="<?= escape::attr($value) ?>">
+                    <?php endif ?>
+                  <?php endforeach ?>
+                <?php endif ?>
                 <input type="submit" name="submit" id="submit" value="<?= $page->button_label()->or('Send') ?>">
               </td>
             </tr>

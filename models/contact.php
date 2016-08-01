@@ -20,8 +20,8 @@ class ContactPage extends Page {
     } else {
       if (r::is('post')) {
         if (get('submit')) {
-          if ($this->contact_data_file()->isEmpty()) {
-            $result['error'] =  'No data file provided. Your submission was lost. Please contact the administrator.';
+          if ($this->content()->get('contact_data_file')->isEmpty()) {
+            $result['error'] =  (String) $this->content()->get('contact_message_no_file')->or('No data file provided. Your submission was lost. Please contact the administrator.');
           } else {
             $data_file = $this->root . DS . $this->contact_data_file()->or('data.php');
             // Load existing data
@@ -33,13 +33,13 @@ class ContactPage extends Page {
             $record['date'] = strftime("%d.%m.%Y %H:%M:%S", time());
             $data[] = $record;
             data::write($data_file, $data);
-            $result['message'] = 'Your submission was accepted. Thank you.';
+            $result['message'] = (String) $this->content()->get('contact_message_success')->or('Your submission was accepted. Thank you.');
           }
         } else {
-          $result['error'] = 'Your submission was somehow screwed. Please try again or contact the administrator.';
+          $result['error'] = (String) $this->content()->get('contact_message_failed')->or('Your submission was somehow screwed. Please try again or contact the administrator.');
         } 
       } else {
-        $result['message'] = 'Please fill out the form below.';
+        $result['message'] = $this->content()->get('contact_message_fillout')->or('Please fill out the form below.');
       }
     }
     
