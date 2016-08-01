@@ -1,7 +1,7 @@
 <?php 
   
 /**
-* Basic Event page model
+* Basic Account page model
 */
 
 class AccountPage extends Page {

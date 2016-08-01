@@ -56,3 +56,12 @@ fields:
       disabled:
         type: checkbox
         text: Disabled
+  contact_data_file:
+    label: Data File Name
+    type: text
+    default: data.php
+    required: true
+    help: >
+      Attention: Providing any other file extension 
+      than <code>.php</code> might expose data to 
+      anyone knowing the url of the data file.

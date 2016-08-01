@@ -36,9 +36,12 @@ $kirby->set('option', 'routes', array(
 $kirby->set('blueprint', 'login', __DIR__ . '/blueprints/login.php');
 $kirby->set('template', 'login', __DIR__ . '/templates/login.php');
 $kirby->set('controller', 'login', __DIR__ . '/controllers/login.php');
+
 $kirby->set('blueprint', 'contact', __DIR__ . '/blueprints/contact.php');
 $kirby->set('template', 'contact', __DIR__ . '/templates/contact.php');
-$kirby->set('controller', 'contact', __DIR__ . '/controllers/account.php');
+require_once(__DIR__ . '/models/contact.php');
+$kirby->set('page::model', 'contact', 'ContactPage');
+
 $kirby->set('blueprint', 'account', __DIR__ . '/blueprints/account.php');
 $kirby->set('template', 'account', __DIR__ . '/templates/account.php');
 $kirby->set('controller', 'account', __DIR__ . '/controllers/account.php');
