@@ -87,6 +87,13 @@
           </tbody>
         </table>
       </form>
+      <?php if ($user->role() == 'admin' || $user->role() == 'editor'): ?>
+        <?php if ($file = $page->file($page->contact_data_file()->or('data.php'))): ?>
+          <a href="<?php echo $page->url() . DS . 'download' . DS . $page->uri() ?>">
+            Download <?php echo html($file->filename()) ?>
+          </a>
+        <?php endif ?>
+      <?php endif ?>
       <?php else: ?>
         <?= $page->contact_denied()->kirbytext() ?>
       <?php endif ?>

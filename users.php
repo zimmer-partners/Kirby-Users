@@ -53,3 +53,28 @@ $kirby->set('field::method', 'slug', function($field) {
   $field->value = str::slug($field->value);
   return $field;
 });
+
+// Registers all data files as download
+if ($user = $kirby->site->user()) {
+  if ($user->role() == 'admin' || $user->role() == 'editor') {
+    $contact_pages = $kirby->site->index()->filterBy('template', '==', 'contact');
+    foreach ($contact_pages as $key => $contact_page) {
+      $debug = $contact_page->uri() . DS . 'download';
+      $kirby->set('option', 'routes', array(
+        array(
+          'pattern' => $contact_page->uri() . DS . 'download/(:all)',
+          'action'  => function($page_uri) {
+            if ($page = site()->find($page_uri)) {
+              if ($file = $page->file($page->contact_data_file()->or('data.php'))) {
+                if (file_exists($file->root())) {
+                  f::download($file->root(), $file->filename());
+                }
+              }
+            }
+          }
+        )
+      ));
+    }
+    
+  }
+}
