@@ -3,7 +3,7 @@
 return function($site, $pages, $page) {
 
   // don't show the login screen to already logged in users
-  if($site->user()) {
+  if($page->loggedIn()) {
     go($page->content()->get('user_account_page')->url());
   } else {
     // handle the form submission

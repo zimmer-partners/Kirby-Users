@@ -9,7 +9,10 @@ icon: user
 fields:
   title:
     label: Title
-    type:  text
+    type: text
+  title_user:
+    type: checkbox
+    text: Use Username as Title when logged in.
   text:
     label: Text
     type: textarea
