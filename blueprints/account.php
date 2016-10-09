@@ -12,7 +12,7 @@ fields:
     type: text
   title_user:
     type: checkbox
-    text: Use Username as Title when logged in.
+    text: "Use user's first and last name as Title when logged in."
   text:
     label: Text
     type: textarea
